@@ -1,7 +1,9 @@
 # Kiến trúc source code — World Economy: Build Your Empire
 
 > Tài liệu này mô tả kiến trúc kỹ thuật cho game. Mục tiêu số 1: **thêm tính năng mới (ngân hàng, M&A, IPO, multiplayer...) mà không phải sửa lõi**.
-> Engine: Godot 4.x · Ngôn ngữ: GDScript (static typing bắt buộc) · Test: gdUnit4 · Dữ liệu: JSON.
+> Engine: Godot 4.5 · Ngôn ngữ: GDScript (static typing bắt buộc) · Test: framework tối giản trong `tests/framework` · Dữ liệu: JSON.
+>
+> **Trạng thái:** kiến trúc này đã được hiện thực ở prototype M2 — các điểm khác với bản thiết kế ban đầu được đánh dấu *(M2)*.
 
 ---
 
@@ -85,7 +87,7 @@ WorldEcoGame/
 │   └── gdd/                      # Game Design Document theo từng mảng
 ├── addons/                       # gdUnit4, (sau này) godot-sqlite, GodotSteam
 ├── data/
-│   ├── schemas/                  # JSON Schema cho từng loại dữ liệu
+│   ├── schemas/                  # (M3) JSON Schema — M2 kiểm tra bằng ContentValidator
 │   ├── base/                     # Nội dung gốc của game
 │   │   ├── commodities/          # coffee.json, rice.json, crude_oil.json ...
 │   │   ├── countries/            # VNM.json, BRA.json, USA.json ...
@@ -125,7 +127,7 @@ WorldEcoGame/
 │   │   ├── inventory/            # Kho, tồn kho theo lô, giá vốn
 │   │   ├── production/           # Nhà máy, BOM, công suất, hao hụt
 │   │   ├── logistics/            # Tuyến, phương tiện, chuyến hàng
-│   │   ├── trade/                # Đơn hàng, hợp đồng, công nợ
+│   │   ├── trade/                # Lệnh mua/bán với thị trường, công nợ phải thu, màn hình Sàn giao dịch
 │   │   ├── finance/              # Sổ cái kép, khoản vay, thuế, báo cáo
 │   │   ├── corporate/            # Công ty, công ty con, sở hữu, định giá
 │   │   ├── ai/                   # Đối thủ AI
@@ -138,6 +140,8 @@ WorldEcoGame/
 │   ├── app/                      # Autoload (giữ càng ít càng tốt)
 │   │   ├── game_session.gd       # Sở hữu Simulation, nhận command từ UI
 │   │   ├── sim_bridge.gd         # Chuyển domain event → Godot signal
+│   │   ├── localization.gd       # Nạp bản dịch JSON (Loc.t)
+│   │   ├── dev_capture.gd        # Chụp màn hình/soak test tự động (--capture)
 │   │   ├── scene_router.gd
 │   │   └── settings.gd
 │   └── ui/                       # UI dùng chung
@@ -148,6 +152,8 @@ WorldEcoGame/
 │       └── main.tscn
 ├── assets/                       # art, fonts, audio
 ├── tests/
+│   ├── run_tests.gd              # Trình chạy test headless
+│   ├── framework/                # TestCase, TestWorld (dựng sim + kiểm tra bất biến)
 │   ├── unit/                     # Mirror cấu trúc src/
 │   ├── scenario/                 # Chạy nhiều năm mô phỏng, kiểm bất biến
 │   └── fixtures/                 # Bộ dữ liệu nhỏ cố định cho test
@@ -337,6 +343,8 @@ Giá mới        P' = P × clamp(1 + k × (D − S) / max(S, ε), 1 − Δmax, 
 
 `k`, `ε_giá`, `Δmax` lấy từ JSON hàng hóa để cân bằng không cần build lại.
 
+*(M2)* Công thức giá thực tế đã đổi sang **giá mục tiêu theo mức tồn kho** vì phiên bản trên dao động mất ổn định — xem ADR-012 và [`gdd/economy.md`](gdd/economy.md).
+
 ---
 
 ## 5. Tài chính & tiền tệ
@@ -401,6 +409,7 @@ ledger.post(JournalEntry.create(ctx.date, company_id, "Bán 500 t cà phê cho c
 
 ## 9. Lưu & tải game (Persistence)
 
+- *(M2)* Số thực của thị trường được lưu dạng nhị phân base64 để khứ hồi chính xác tuyệt đối (ADR-011).
 - **Định dạng MVP: JSON nén (gzip)** chứa header `{ save_version, game_version, content_hash, created_at }` + phần state theo từng module (mỗi module có serializer riêng).
   - Lý do chọn JSON trước SQLite: state nằm trong bộ nhớ, ghi/đọc cả khối nhanh, dễ debug, dễ migration. SQLite (addon godot-sqlite) cân nhắc sau nếu cần lưu lịch sử giá/báo cáo nhiều năm.
 - **Migration chain**: `migrations/m001_to_002.gd`, `m002_to_003.gd`… mỗi bước nhận `Dictionary` cũ trả `Dictionary` mới. Save cũ luôn được nâng cấp tuần tự.
@@ -466,8 +475,8 @@ Ví dụ `data/base/countries/VNM.json` (rút gọn):
 
 | Tầng | Công cụ | Ví dụ |
 |------|---------|-------|
-| Unit | gdUnit4 | `Money` làm tròn/overflow; `Ledger.post` từ chối bút toán lệch; BOM tiêu hao đúng. |
-| System | gdUnit4 + fixtures | Một nhà máy chạy 30 ngày với nguyên liệu cố định → sản lượng/giá thành đúng. |
+| Unit | `tests/framework` | `Money` làm tròn/overflow; `Ledger.post` từ chối bút toán lệch; BOM tiêu hao đúng. |
+| System | `tests/framework` + `TestWorld` | Một nhà máy chạy 30 ngày với nguyên liệu cố định → sản lượng/giá thành đúng. |
 | Scenario | headless runner | Chuỗi mẫu: mua nguyên liệu → vận chuyển → sản xuất → bán → thu tiền → báo cáo. |
 | Bất biến | chạy 10 năm, nhiều seed | Sổ cái luôn cân; không tồn kho âm; giá trong biên; Balance Sheet: Tài sản = Nợ + Vốn. |
 | Golden run | hash state | Phát hiện thay đổi hành vi không chủ ý. |

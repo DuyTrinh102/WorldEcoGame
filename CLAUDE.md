@@ -29,22 +29,39 @@ Game: **World Economy: Build Your Empire** — mô phỏng kinh tế toàn cầu
 
 - Làm **một module/tính năng mỗi lần**. Không sửa nhiều module cùng lúc nếu chưa có test bao phủ.
 - Logic kinh tế mới **phải có test** (`tests/unit/` mirror `src/`; chuỗi nghiệp vụ trong `tests/scenario/`).
-- Trước khi commit: chạy test và validate data (lệnh bên dưới sẽ được cập nhật ở M0).
+- Trước khi commit: chạy test, validate data và lint kiến trúc (lệnh bên dưới).
 - Quyết định kiến trúc mới → thêm mục vào `docs/DECISIONS.md`.
 - Xong việc của mốc → tick checklist trong `docs/ROADMAP.md`.
 
-## Lệnh (cập nhật khi hoàn thành M0)
+## Lệnh
 
 ```bash
-# Chạy toàn bộ test (gdUnit4, headless)
-godot --headless -s addons/gdUnit4/bin/GdUnitCmdTool.gd -a tests/
+# Lần đầu sau khi clone (tạo cache class_name) — bắt buộc trước khi chạy script headless
+godot --headless --import
 
-# Kiểm tra dữ liệu JSON
-godot --headless -s tools/validate_data.gd
+# Chạy toàn bộ test (lọc: -- --filter=market)
+godot --headless --path . -s res://tests/run_tests.gd
 
-# Kiểm tra phân lớp kiến trúc
-godot --headless -s tools/lint_architecture.gd
+# Kiểm tra dữ liệu JSON + bản dịch
+godot --headless --path . -s res://tools/validate_data.gd
 
-# Chạy mô phỏng cân bằng N năm, xuất CSV
-godot --headless -s tools/balance_runner.gd -- --years 10 --seed 42
+# Kiểm tra phân lớp kiến trúc (sim không phụ thuộc UI/Node, không RNG toàn cục)
+godot --headless --path . -s res://tools/lint_architecture.gd
+
+# Chạy mô phỏng cân bằng N năm (in tóm tắt theo năm, tùy chọn xuất CSV)
+godot --headless --path . -s res://tools/balance_runner.gd -- --years=10 --seed=42 [--commodity=coffee] [--csv=user://b.csv]
+
+# Chụp màn hình mọi màn hình sau kịch bản demo (cần màn hình ảo trên Linux)
+xvfb-run -a godot --path . --rendering-driver opengl3 --resolution 1600x900 -- --no-welcome --capture=/tmp/shot --demo [--soak=30]
+
+# Export
+godot --headless --export-release "Windows Desktop" build/windows/WorldEconomy.exe
 ```
+
+## Lưu ý kỹ thuật đã gặp
+
+- Script `extends SceneTree` gặp lỗi runtime trong `_init()` sẽ treo (không gọi được `quit()`): luôn chạy với `timeout`.
+- Gán mảng không kiểu vào `Array[String]` gây lỗi runtime — dùng `.duplicate()` từ mảng có kiểu hoặc gán từng phần tử.
+- `JSON.parse_string` trả số nguyên thành `float`: đọc save qua `SaveUtil.i/f/s/b`; số thực cần chính xác dùng `SaveUtil.floats_to_b64`.
+- Label `autowrap` trong hộp thoại phải có `custom_minimum_size.x` (dùng `UI.wrap_label`), nếu không hộp thoại cao hết màn hình.
+- Không đặt tên hàm `_set`, `_get` (trùng hàm ảo của Object).

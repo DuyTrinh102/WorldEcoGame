@@ -40,4 +40,4 @@ func run(world: WorldState, ctx: TickContext) -> void:
 			"period": report["period"],
 			"revenue_cents": report["revenue"],
 			"net_income_cents": report["net_income"],
-		}, "EVT_PERIOD_CLOSED", SimEvent.Importance.HIGH, company_id)
+		}, "EVT_PERIOD_CLOSED", SimEvent.Importance.NORMAL, company_id)

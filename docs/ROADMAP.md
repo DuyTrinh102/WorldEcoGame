@@ -34,24 +34,39 @@ gantt
 | **M5** Alpha & Content | 6–10 tuần | Đủ nội dung bản 1.0, đủ 8 màn hình | 50 quốc gia, 30–50 hàng hóa; save migration; người ngoài chơi được 2 giờ không cần hướng dẫn miệng |
 | **M6** Beta & Release | 6–10 tuần | Ổn định, tutorial, phát hành Steam | Tiêu chí phát hành trong concept (mục cuối file này) |
 
+## Trạng thái hiện tại (20/11/2026)
+
+**M0 ✅ và M2 ✅ đã xong — prototype chơi được.** M1 làm một phần: đã có dữ liệu mẫu, mô hình kinh tế ([`gdd/economy.md`](gdd/economy.md)) và hệ thống tài khoản; các tài liệu GDD còn lại và wireframe chưa làm, quyết định thiết kế tạm theo đề xuất mặc định trong `DECISIONS.md`.
+
+| Hạng mục | Kết quả |
+|----------|---------|
+| Lõi mô phỏng | 8 module: world, corporate, finance, market, inventory, logistics, production, trade |
+| Nội dung | 8 quốc gia, 12 hàng hóa, 4 loại nhà máy, 1 kịch bản |
+| Giao diện | Bản đồ thế giới + 6 màn hình (Sàn giao dịch, Kho bãi, Nhà máy, Vận tải, Tài chính, Tin tức), 4 hộp thoại |
+| Kiểm thử | 58 test (unit + scenario: chuỗi giá trị, lưu/tải tất định, 5 năm bất biến kế toán, 10 năm ổn định giá) |
+| Công cụ | `validate_data`, `lint_architecture`, `balance_runner`, chụp màn hình tự động (`--capture`) |
+| Build | Export Windows/Linux (`export_presets.cfg`), CI GitHub Actions |
+
+Việc tiếp theo đề xuất: hoàn tất M1 (GDD + wireframe dựa trên phản hồi chơi thử prototype) → M3.
+
 ---
 
 ## M0 — Foundation (kỹ thuật)
 
 Mục tiêu: dựng "đường ray" để mọi tính năng sau chỉ việc cắm vào.
 
-- [ ] Khởi tạo project Godot 4.x, `.gitignore`, cấu trúc thư mục theo ARCHITECTURE §3
-- [ ] Cài **gdUnit4**, chạy test headless từ dòng lệnh
-- [ ] GitHub Actions: validate data → unit test → (nightly) export Windows
-- [ ] `core/types`: `Money`, `UnitPrice`, `Quantity`, `GameDate`, `EntityId` + test đầy đủ (làm tròn, overflow, cộng trừ khác tiền tệ → lỗi)
-- [ ] `core/util`: `RngStream` (derive seed theo system), `Result`, `Logger`
-- [ ] `content`: `ContentRegistry`, `ContentLoader` (base → mods), `SchemaValidator`, `tools/validate_data.gd`
-- [ ] `kernel`: `Simulation`, `SimClock`, `SimPhase`, `SimSystem`, `SimCommand`, `CommandQueue`, `TickContext`, `WorldState`, `SimModule`, `ModuleRegistry` (sắp xếp theo dependency, phát hiện vòng)
-- [ ] `kernel/modifiers`: `Modifier`, `ModifierStack` + test
-- [ ] `persistence`: `SaveService` (JSON + gzip, header version), khung migration
-- [ ] `app`: `GameSession` (tốc độ, pause, ngân sách ms/frame), `SimBridge`
-- [ ] `tools/lint_architecture.gd`: cấm `extends Node` / tham chiếu `ui/` trong `kernel/` và `modules/*/sim/`
-- [ ] `CLAUDE.md` hoàn chỉnh (đã có bản đầu)
+- [x] Khởi tạo project Godot 4.x, `.gitignore`, cấu trúc thư mục theo ARCHITECTURE §3
+- [x] ~~Cài gdUnit4~~ → framework test tối giản tự viết (`tests/framework`, ADR-010), chạy headless từ dòng lệnh
+- [x] GitHub Actions: validate data → unit test → (nightly) export Windows
+- [x] `core/types`: `Money`, `UnitPrice`, `Quantity`, `GameDate`, `EntityId` + test đầy đủ (làm tròn, overflow, cộng trừ khác tiền tệ → lỗi)
+- [x] `core/util`: `RngStream` (derive seed theo system), `Result`, `Logger`
+- [x] `content`: `ContentRegistry`, `ContentLoader` (base → mods), `SchemaValidator`, `tools/validate_data.gd`
+- [x] `kernel`: `Simulation`, `SimClock`, `SimPhase`, `SimSystem`, `SimCommand`, `CommandQueue`, `TickContext`, `WorldState`, `SimModule`, `ModuleRegistry` (sắp xếp theo dependency, phát hiện vòng)
+- [x] `kernel/modifiers`: `Modifier`, `ModifierStack` + test
+- [x] `persistence`: `SaveService` (JSON + gzip, header version), khung migration
+- [x] `app`: `GameSession` (tốc độ, pause, ngân sách ms/frame), `SimBridge`
+- [x] `tools/lint_architecture.gd`: cấm `extends Node` / tham chiếu `ui/` trong `kernel/` và `modules/*/sim/`
+- [x] `CLAUDE.md` hoàn chỉnh (đã có bản đầu)
 
 **Exit:** `godot --headless` chạy 365 tick với 1 module "dummy" đăng ký system DAILY/MONTHLY; test xanh trên CI.
 
@@ -61,11 +76,11 @@ Mục tiêu: dựng "đường ray" để mọi tính năng sau chỉ việc c�
 
 - [ ] Chốt các quyết định thiết kế trong [`DECISIONS.md`](DECISIONS.md) (điểm bắt đầu, mục tiêu chơi, phong cách hình ảnh...)
 - [ ] GDD theo mảng trong `docs/gdd/`: `economy.md`, `production.md`, `logistics.md`, `finance.md`, `ai.md`, `events.md`, `ui-ux.md`
-- [ ] Mô hình kinh tế trên **bảng tính** trước khi code: công thức cung/cầu/giá, thử 24 tháng với 3 hàng hóa, tìm tham số không dao động phi thực tế
-- [ ] Hệ thống tài khoản kế toán (chart of accounts) tối giản cho MVP
-- [ ] Danh sách dữ liệu prototype: **8 quốc gia** (VNM, BRA, USA, CHN, IND, AUS, SAU, DEU) × **12 hàng hóa** (cà phê, gạo, đậu nành, lúa mì, quặng sắt, đồng, than, dầu thô, thép, phân bón, cà phê rang xay, thực phẩm đóng gói)
+- [x] Mô hình kinh tế — làm trực tiếp bằng `tools/balance_runner.gd` thay cho bảng tính, ghi lại ở [`gdd/economy.md`](gdd/economy.md): công thức cung/cầu/giá, thử 24 tháng với 3 hàng hóa, tìm tham số không dao động phi thực tế
+- [x] Hệ thống tài khoản kế toán (chart of accounts) tối giản cho MVP (`data/base/accounts.json`)
+- [x] Danh sách dữ liệu prototype: **8 quốc gia** (VNM, BRA, USA, CHN, IND, AUS, SAU, DEU) × **12 hàng hóa** (cà phê, gạo, đậu nành, lúa mì, quặng sắt, đồng, than, dầu thô, thép, phân bón, cà phê rang xay, thực phẩm đóng gói)
 - [ ] Wireframe 8 màn hình chính + bố cục HUD (bản đồ giữa, top bar, nav trái, panel phải, ticker dưới)
-- [ ] Viết JSON Schema cho: commodity, country, recipe, facility, transport, event, ai_profile, scenario
+- [ ] Viết JSON Schema cho: *(prototype kiểm tra bằng `ContentValidator` + `tools/validate_data.gd`; JSON Schema để M3)* commodity, country, recipe, facility, transport, event, ai_profile, scenario
 
 **Exit:** GDD v1 được duyệt; backlog M2–M3 được chia thành issue trên GitHub.
 
@@ -77,16 +92,16 @@ Mục tiêu: chứng minh **vòng lặp cốt lõi vui và đúng** trước khi
 
 **Module tối thiểu:** `world`, `market`, `inventory`, `production`, `logistics`, `trade`, `finance` (bản rút gọn).
 
-- [ ] `world`: nạp 8 quốc gia, tỷ giá cố định, cảng chính
-- [ ] `market`: giá theo cung cầu đơn giản (DetailedMarketModel bản 1), lệnh mua/bán với market maker (có trượt giá theo khối lượng)
-- [ ] `inventory`: kho theo quốc gia, tồn theo lô, giá vốn bình quân gia quyền
-- [ ] `production`: 1 chuỗi — **cà phê nhân → cà phê rang xay**, BOM, công suất, hao hụt, chi phí
-- [ ] `logistics`: tuyến biển giữa các cảng, thời gian = khoảng cách / tốc độ, phí theo tấn
-- [ ] `trade`: bán cho thị trường nội địa, ghi doanh thu + công nợ, thu tiền sau N ngày
-- [ ] `finance`: sổ cái kép, tiền mặt, doanh thu, giá vốn, chi phí; Income Statement + Balance Sheet tối giản
-- [ ] UI thô: bản đồ (polygon đơn giản hoặc ảnh tĩnh + điểm click), panel quốc gia, sàn giao dịch, kho, nút tốc độ
-- [ ] Save/load v1 với state thật
-- [ ] **Scenario test chuỗi mẫu** (từ concept): mua 1 000 t cà phê nhân ở VNM → chở về nhà máy → rang xay → bán ở DEU → thu tiền → báo cáo lãi lỗ khớp với tính tay
+- [x] `world`: nạp 8 quốc gia, tỷ giá cố định, cảng chính
+- [x] `market`: giá theo cung cầu đơn giản (DetailedMarketModel bản 1), lệnh mua/bán với market maker (có trượt giá theo khối lượng)
+- [x] `inventory`: kho theo quốc gia, tồn theo lô, giá vốn bình quân gia quyền
+- [x] `production`: 1 chuỗi — **cà phê nhân → cà phê rang xay**, BOM, công suất, hao hụt, chi phí
+- [x] `logistics`: tuyến biển giữa các cảng, thời gian = khoảng cách / tốc độ, phí theo tấn
+- [x] `trade`: bán cho thị trường nội địa, ghi doanh thu + công nợ, thu tiền sau N ngày
+- [x] `finance`: sổ cái kép, tiền mặt, doanh thu, giá vốn, chi phí; Income Statement + Balance Sheet tối giản
+- [x] UI thô: bản đồ (polygon đơn giản hoặc ảnh tĩnh + điểm click), panel quốc gia, sàn giao dịch, kho, nút tốc độ
+- [x] Save/load v1 với state thật
+- [x] **Scenario test chuỗi mẫu** (từ concept): mua 1 000 t cà phê nhân ở VNM → chở về nhà máy → rang xay → bán ở DEU → thu tiền → báo cáo lãi lỗ khớp với tính tay
 
 **Exit:** Scenario test pass; chơi thử 30 phút thấy được quyết định "mua lúc giá thấp, trữ kho, bán khi khan hiếm" có ý nghĩa.
 
