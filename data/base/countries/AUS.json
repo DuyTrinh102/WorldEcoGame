@@ -1,0 +1,42 @@
+{
+  "id": "AUS",
+  "name_key": "COUNTRY_AUS",
+  "currency": "AUD",
+  "region": "oceania",
+  "simulation_tier": "detailed",
+  "color": "#012169",
+  "macro": {
+    "population": 26000000,
+    "gdp_per_capita_usd": 64000
+  },
+  "port": {
+    "name": "Fremantle",
+    "lat": -32.05,
+    "lon": 115.74
+  },
+  "resources": {
+    "iron_ore": 900000000,
+    "coal": 450000000,
+    "wheat": 30000000,
+    "copper": 800000,
+    "crude_oil": 15000000,
+    "steel": 5000000,
+    "packaged_food": 5000000,
+    "roasted_coffee": 60000
+  },
+  "demand_bias": {
+    "coffee": 1.3,
+    "roasted_coffee": 1.5
+  },
+  "tax": {
+    "corporate": 0.2
+  },
+  "risk": {
+    "political": 0.2,
+    "natural_disaster": 0.3
+  },
+  "meta": {
+    "source": "Ước lượng gameplay làm tròn — chưa phải số liệu thống kê chính thức",
+    "ref_year": 2025
+  }
+}

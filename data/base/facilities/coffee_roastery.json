@@ -1,0 +1,15 @@
+{
+  "id": "coffee_roastery",
+  "build_cost": 2500000,
+  "build_days": 45,
+  "capacity_per_day": 12,
+  "inputs": {
+    "coffee": 1.19
+  },
+  "output": "roasted_coffee",
+  "variable_cost_per_unit": 1100,
+  "monthly_overhead": 45000,
+  "depreciation_years": 10,
+  "name_key": "FACILITY_COFFEE_ROASTERY",
+  "description_key": "FACILITY_DESC_COFFEE_ROASTERY"
+}

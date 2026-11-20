@@ -1,0 +1,12 @@
+# Godot
+.godot/
+*.import
+export_presets.cfg.bak
+/build/
+/android/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.tmp

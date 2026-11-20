@@ -1,0 +1,52 @@
+{
+  "id": "CHN",
+  "name_key": "COUNTRY_CHN",
+  "currency": "CNY",
+  "region": "asia_east",
+  "simulation_tier": "detailed",
+  "color": "#de2910",
+  "macro": {
+    "population": 1410000000,
+    "gdp_per_capita_usd": 12600
+  },
+  "port": {
+    "name": "Thượng Hải",
+    "lat": 31.23,
+    "lon": 121.49
+  },
+  "resources": {
+    "rice": 145000000,
+    "wheat": 137000000,
+    "coal": 4500000000,
+    "steel": 1000000000,
+    "crude_oil": 200000000,
+    "fertilizer": 50000000,
+    "copper": 1800000,
+    "soybeans": 20000000,
+    "iron_ore": 280000000,
+    "packaged_food": 90000000,
+    "roasted_coffee": 150000,
+    "coffee": 110000
+  },
+  "demand_bias": {
+    "rice": 2.5,
+    "soybeans": 2.2,
+    "coffee": 0.2,
+    "roasted_coffee": 0.2,
+    "iron_ore": 2.5,
+    "coal": 1.8,
+    "copper": 2.5,
+    "steel": 1.6
+  },
+  "tax": {
+    "corporate": 0.2
+  },
+  "risk": {
+    "political": 0.2,
+    "natural_disaster": 0.3
+  },
+  "meta": {
+    "source": "Ước lượng gameplay làm tròn — chưa phải số liệu thống kê chính thức",
+    "ref_year": 2025
+  }
+}

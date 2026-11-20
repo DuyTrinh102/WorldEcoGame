@@ -1,0 +1,48 @@
+{
+  "id": "IND",
+  "name_key": "COUNTRY_IND",
+  "currency": "INR",
+  "region": "asia_south",
+  "simulation_tier": "detailed",
+  "color": "#ff9933",
+  "macro": {
+    "population": 1430000000,
+    "gdp_per_capita_usd": 2500
+  },
+  "port": {
+    "name": "Mumbai",
+    "lat": 18.95,
+    "lon": 72.84
+  },
+  "resources": {
+    "rice": 135000000,
+    "wheat": 110000000,
+    "coal": 950000000,
+    "iron_ore": 250000000,
+    "steel": 140000000,
+    "coffee": 350000,
+    "fertilizer": 25000000,
+    "packaged_food": 25000000,
+    "soybeans": 12000000,
+    "crude_oil": 30000000,
+    "roasted_coffee": 50000
+  },
+  "demand_bias": {
+    "rice": 2.5,
+    "wheat": 1.6,
+    "coffee": 0.3,
+    "roasted_coffee": 0.3,
+    "fertilizer": 1.8
+  },
+  "tax": {
+    "corporate": 0.2
+  },
+  "risk": {
+    "political": 0.2,
+    "natural_disaster": 0.3
+  },
+  "meta": {
+    "source": "Ước lượng gameplay làm tròn — chưa phải số liệu thống kê chính thức",
+    "ref_year": 2025
+  }
+}

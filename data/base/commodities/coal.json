@@ -1,0 +1,34 @@
+{
+  "id": "coal",
+  "name_key": "COMMODITY_COAL",
+  "category": "energy",
+  "unit": "t",
+  "base_price": 130,
+  "color": "#4a4a4a",
+  "storage": "dry",
+  "market": {
+    "price_elasticity": -0.2,
+    "income_elasticity": 0.4,
+    "supply_elasticity": 0.2,
+    "adjust_speed": 0.05,
+    "max_daily_change": 0.03
+  },
+  "seasonality": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "meta": {
+    "source": "Giá trị gameplay ước lượng, cần thay bằng bộ dữ liệu có nguồn",
+    "ref_year": 2025
+  }
+}

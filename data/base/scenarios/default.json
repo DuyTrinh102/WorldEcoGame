@@ -1,0 +1,12 @@
+{
+  "id": "default",
+  "name_key": "SCENARIO_DEFAULT",
+  "start_date": "2027-01-01",
+  "company_name": "Saigon Trading Co.",
+  "company_color": "#e0b04a",
+  "home_country": "VNM",
+  "start_cash": 5000000,
+  "start_warehouses": [
+    "VNM"
+  ]
+}

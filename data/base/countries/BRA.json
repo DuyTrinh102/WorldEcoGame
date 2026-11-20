@@ -1,0 +1,45 @@
+{
+  "id": "BRA",
+  "name_key": "COUNTRY_BRA",
+  "currency": "BRL",
+  "region": "south_america",
+  "simulation_tier": "detailed",
+  "color": "#009c3b",
+  "macro": {
+    "population": 216000000,
+    "gdp_per_capita_usd": 10000
+  },
+  "port": {
+    "name": "Santos",
+    "lat": -23.95,
+    "lon": -46.33
+  },
+  "resources": {
+    "coffee": 3600000,
+    "soybeans": 155000000,
+    "iron_ore": 420000000,
+    "crude_oil": 170000000,
+    "steel": 32000000,
+    "wheat": 8000000,
+    "rice": 7000000,
+    "packaged_food": 18000000,
+    "roasted_coffee": 900000,
+    "fertilizer": 2000000
+  },
+  "demand_bias": {
+    "coffee": 2.5,
+    "roasted_coffee": 2.5,
+    "rice": 1.2
+  },
+  "tax": {
+    "corporate": 0.2
+  },
+  "risk": {
+    "political": 0.2,
+    "natural_disaster": 0.3
+  },
+  "meta": {
+    "source": "Ước lượng gameplay làm tròn — chưa phải số liệu thống kê chính thức",
+    "ref_year": 2025
+  }
+}

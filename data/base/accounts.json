@@ -1,0 +1,92 @@
+[
+  {
+    "id": "cash",
+    "code": "1110",
+    "name_key": "ACC_CASH",
+    "kind": "asset"
+  },
+  {
+    "id": "receivables",
+    "code": "1310",
+    "name_key": "ACC_RECEIVABLES",
+    "kind": "asset"
+  },
+  {
+    "id": "inventory",
+    "code": "1560",
+    "name_key": "ACC_INVENTORY",
+    "kind": "asset"
+  },
+  {
+    "id": "inventory_transit",
+    "code": "1570",
+    "name_key": "ACC_INVENTORY_TRANSIT",
+    "kind": "asset"
+  },
+  {
+    "id": "fixed_assets",
+    "code": "2110",
+    "name_key": "ACC_FIXED_ASSETS",
+    "kind": "asset"
+  },
+  {
+    "id": "accum_depreciation",
+    "code": "2140",
+    "name_key": "ACC_ACCUM_DEPRECIATION",
+    "kind": "asset"
+  },
+  {
+    "id": "loans",
+    "code": "3410",
+    "name_key": "ACC_LOANS",
+    "kind": "liability"
+  },
+  {
+    "id": "capital",
+    "code": "4110",
+    "name_key": "ACC_CAPITAL",
+    "kind": "equity"
+  },
+  {
+    "id": "revenue",
+    "code": "5110",
+    "name_key": "ACC_REVENUE",
+    "kind": "revenue"
+  },
+  {
+    "id": "cogs",
+    "code": "6320",
+    "name_key": "ACC_COGS",
+    "kind": "expense"
+  },
+  {
+    "id": "storage_expense",
+    "code": "6410",
+    "name_key": "ACC_STORAGE_EXPENSE",
+    "kind": "expense"
+  },
+  {
+    "id": "factory_overhead",
+    "code": "6420",
+    "name_key": "ACC_FACTORY_OVERHEAD",
+    "kind": "expense"
+  },
+  {
+    "id": "depreciation",
+    "code": "6430",
+    "name_key": "ACC_DEPRECIATION",
+    "kind": "expense"
+  },
+  {
+    "id": "setup_expense",
+    "code": "6440",
+    "name_key": "ACC_SETUP_EXPENSE",
+    "kind": "expense"
+  },
+  {
+    "id": "interest_expense",
+    "code": "6350",
+    "name_key": "ACC_INTEREST_EXPENSE",
+    "kind": "expense"
+  }
+]

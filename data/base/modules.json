@@ -1,0 +1,34 @@
+[
+  {
+    "id": "world",
+    "script": "res://src/modules/world/world_module.gd"
+  },
+  {
+    "id": "corporate",
+    "script": "res://src/modules/corporate/corporate_module.gd"
+  },
+  {
+    "id": "finance",
+    "script": "res://src/modules/finance/finance_module.gd"
+  },
+  {
+    "id": "market",
+    "script": "res://src/modules/market/market_module.gd"
+  },
+  {
+    "id": "inventory",
+    "script": "res://src/modules/inventory/inventory_module.gd"
+  },
+  {
+    "id": "logistics",
+    "script": "res://src/modules/logistics/logistics_module.gd"
+  },
+  {
+    "id": "production",
+    "script": "res://src/modules/production/production_module.gd"
+  },
+  {
+    "id": "trade",
+    "script": "res://src/modules/trade/trade_module.gd"
+  }
+]

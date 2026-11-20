@@ -1,0 +1,38 @@
+{
+  "market": {
+    "target_cover_days": 90,
+    "trade_rate": 8.0,
+    "noise": 0.004,
+    "price_floor_ratio": 0.25,
+    "price_cap_ratio": 4.0,
+    "supply_ema_days": 90,
+    "warmup_days": 240,
+    "trade_depth_days": 30,
+    "slippage": 0.5,
+    "max_order_stock_ratio": 0.5,
+    "stock_price_sensitivity": 1.2
+  },
+  "logistics": {
+    "sea_route_factor": 1.3,
+    "ship_speed_km_per_day": 650,
+    "port_days": 2,
+    "port_handling_per_t": 12.0,
+    "freight_per_t_per_1000km": 4.5,
+    "min_freight_per_t": 15.0,
+    "delay_chance": 0.12,
+    "max_delay_days": 7
+  },
+  "warehouse": {
+    "open_cost": 150000,
+    "monthly_rent": 12000,
+    "storage_per_t_month": 1.5,
+    "capacity_t": 30000
+  },
+  "finance": {
+    "loan_rate_annual": 0.08,
+    "overdraft_rate_annual": 0.18,
+    "max_loan_base": 3000000,
+    "max_loan_equity_ratio": 1.0,
+    "receivable_days": 30
+  }
+}

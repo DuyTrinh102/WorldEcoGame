@@ -1,0 +1,37 @@
+{
+  "id": "packaged_food",
+  "name_key": "COMMODITY_PACKAGED_FOOD",
+  "category": "consumer",
+  "unit": "t",
+  "base_price": 1500,
+  "color": "#e06666",
+  "storage": "dry",
+  "market": {
+    "price_elasticity": -0.4,
+    "income_elasticity": 0.9,
+    "supply_elasticity": 0.3,
+    "adjust_speed": 0.05,
+    "max_daily_change": 0.025
+  },
+  "seasonality": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "meta": {
+    "source": "Giá trị gameplay ước lượng, cần thay bằng bộ dữ liệu có nguồn",
+    "ref_year": 2025
+  },
+  "perishable": {
+    "monthly_loss_rate": 0.003
+  }
+}

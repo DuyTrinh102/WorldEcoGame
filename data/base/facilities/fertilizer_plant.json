@@ -1,0 +1,16 @@
+{
+  "id": "fertilizer_plant",
+  "build_cost": 4000000,
+  "build_days": 75,
+  "capacity_per_day": 150,
+  "inputs": {
+    "crude_oil": 0.35,
+    "coal": 0.6
+  },
+  "output": "fertilizer",
+  "variable_cost_per_unit": 70,
+  "monthly_overhead": 80000,
+  "depreciation_years": 15,
+  "name_key": "FACILITY_FERTILIZER_PLANT",
+  "description_key": "FACILITY_DESC_FERTILIZER_PLANT"
+}

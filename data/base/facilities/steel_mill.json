@@ -1,0 +1,16 @@
+{
+  "id": "steel_mill",
+  "build_cost": 6000000,
+  "build_days": 90,
+  "capacity_per_day": 100,
+  "inputs": {
+    "iron_ore": 1.6,
+    "coal": 0.75
+  },
+  "output": "steel",
+  "variable_cost_per_unit": 230,
+  "monthly_overhead": 120000,
+  "depreciation_years": 15,
+  "name_key": "FACILITY_STEEL_MILL",
+  "description_key": "FACILITY_DESC_STEEL_MILL"
+}

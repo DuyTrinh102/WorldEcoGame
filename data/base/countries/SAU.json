@@ -1,0 +1,39 @@
+{
+  "id": "SAU",
+  "name_key": "COUNTRY_SAU",
+  "currency": "SAR",
+  "region": "middle_east",
+  "simulation_tier": "detailed",
+  "color": "#006c35",
+  "macro": {
+    "population": 36000000,
+    "gdp_per_capita_usd": 30000
+  },
+  "port": {
+    "name": "Dammam",
+    "lat": 26.43,
+    "lon": 50.1
+  },
+  "resources": {
+    "crude_oil": 500000000,
+    "fertilizer": 10000000,
+    "steel": 9000000,
+    "packaged_food": 3000000
+  },
+  "demand_bias": {
+    "rice": 1.8,
+    "wheat": 1.5,
+    "packaged_food": 1.4
+  },
+  "tax": {
+    "corporate": 0.2
+  },
+  "risk": {
+    "political": 0.2,
+    "natural_disaster": 0.3
+  },
+  "meta": {
+    "source": "Ước lượng gameplay làm tròn — chưa phải số liệu thống kê chính thức",
+    "ref_year": 2025
+  }
+}

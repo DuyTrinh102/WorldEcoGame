@@ -1,0 +1,17 @@
+{
+  "id": "food_plant",
+  "build_cost": 3000000,
+  "build_days": 60,
+  "capacity_per_day": 40,
+  "inputs": {
+    "wheat": 0.7,
+    "soybeans": 0.35,
+    "rice": 0.2
+  },
+  "output": "packaged_food",
+  "variable_cost_per_unit": 700,
+  "monthly_overhead": 70000,
+  "depreciation_years": 12,
+  "name_key": "FACILITY_FOOD_PLANT",
+  "description_key": "FACILITY_DESC_FOOD_PLANT"
+}

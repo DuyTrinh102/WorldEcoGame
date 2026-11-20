@@ -1,0 +1,43 @@
+{
+  "id": "DEU",
+  "name_key": "COUNTRY_DEU",
+  "currency": "EUR",
+  "region": "europe",
+  "simulation_tier": "detailed",
+  "color": "#ffce00",
+  "macro": {
+    "population": 84000000,
+    "gdp_per_capita_usd": 52000
+  },
+  "port": {
+    "name": "Hamburg",
+    "lat": 53.54,
+    "lon": 9.97
+  },
+  "resources": {
+    "wheat": 22000000,
+    "steel": 36000000,
+    "roasted_coffee": 1100000,
+    "packaged_food": 30000000,
+    "fertilizer": 5000000,
+    "coal": 100000000,
+    "crude_oil": 2000000
+  },
+  "demand_bias": {
+    "coffee": 2.2,
+    "roasted_coffee": 2.4,
+    "rice": 0.3,
+    "packaged_food": 1.4
+  },
+  "tax": {
+    "corporate": 0.2
+  },
+  "risk": {
+    "political": 0.2,
+    "natural_disaster": 0.3
+  },
+  "meta": {
+    "source": "Ước lượng gameplay làm tròn — chưa phải số liệu thống kê chính thức",
+    "ref_year": 2025
+  }
+}

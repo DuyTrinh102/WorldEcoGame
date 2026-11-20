@@ -1,0 +1,43 @@
+{
+  "id": "VNM",
+  "name_key": "COUNTRY_VNM",
+  "currency": "VND",
+  "region": "asia_southeast",
+  "simulation_tier": "detailed",
+  "color": "#da251d",
+  "macro": {
+    "population": 100300000,
+    "gdp_per_capita_usd": 4300
+  },
+  "port": {
+    "name": "Cảng TP.HCM",
+    "lat": 10.77,
+    "lon": 106.75
+  },
+  "resources": {
+    "coffee": 1800000,
+    "rice": 27000000,
+    "coal": 45000000,
+    "crude_oil": 9000000,
+    "steel": 20000000,
+    "fertilizer": 4000000,
+    "packaged_food": 6000000,
+    "roasted_coffee": 120000
+  },
+  "demand_bias": {
+    "rice": 4.0,
+    "coffee": 0.8,
+    "roasted_coffee": 0.6
+  },
+  "tax": {
+    "corporate": 0.2
+  },
+  "risk": {
+    "political": 0.2,
+    "natural_disaster": 0.3
+  },
+  "meta": {
+    "source": "Ước lượng gameplay làm tròn — chưa phải số liệu thống kê chính thức",
+    "ref_year": 2025
+  }
+}

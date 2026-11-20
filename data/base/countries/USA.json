@@ -1,0 +1,47 @@
+{
+  "id": "USA",
+  "name_key": "COUNTRY_USA",
+  "currency": "USD",
+  "region": "north_america",
+  "simulation_tier": "detailed",
+  "color": "#3c3b6e",
+  "macro": {
+    "population": 335000000,
+    "gdp_per_capita_usd": 80000
+  },
+  "port": {
+    "name": "Houston",
+    "lat": 29.73,
+    "lon": -95.27
+  },
+  "resources": {
+    "wheat": 50000000,
+    "soybeans": 115000000,
+    "crude_oil": 650000000,
+    "coal": 500000000,
+    "steel": 80000000,
+    "copper": 1200000,
+    "fertilizer": 20000000,
+    "packaged_food": 60000000,
+    "roasted_coffee": 1000000,
+    "rice": 7000000,
+    "iron_ore": 48000000
+  },
+  "demand_bias": {
+    "coffee": 1.6,
+    "roasted_coffee": 1.8,
+    "rice": 0.4,
+    "packaged_food": 1.5
+  },
+  "tax": {
+    "corporate": 0.2
+  },
+  "risk": {
+    "political": 0.2,
+    "natural_disaster": 0.3
+  },
+  "meta": {
+    "source": "Ước lượng gameplay làm tròn — chưa phải số liệu thống kê chính thức",
+    "ref_year": 2025
+  }
+}
